@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private AI Assistant</title>
+    <link rel="icon" href="appicon.png" type="image/png"> <!-- Favicon added -->
+    <style>
+        /* Light mode (default) */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        header img {
+            height: 50px;
+            margin-right: 10px; /* Space between icon and title */
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem; /* Adjust for smaller screens */
+        }
+        .carousel {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .carousel img {
+            width: 100%;
+            max-width: 100%; /* Ensures images fit smaller screens */
+            border-radius: 8px;
+        }
+        .section {
+            margin: 20px auto;
+            max-width: 100%; /* Adjusts to screen width */
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1rem; /* Responsive font size */
+        }
+        .section h2 {
+            margin-bottom: 10px;
+        }
+        .section input, .section textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .section button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .section button:hover {
+            background-color: #555;
+        }
+        .features-list {
+            list-style-type: disc;
+            margin: 10px 0 10px 20px;
+        }
+
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #ffffff;
+            }
+            header {
+                background-color: #222;
+            }
+            .section {
+                background-color: #1e1e1e;
+                box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+            }
+            .section input, .section textarea {
+                background-color: #333;
+                border: 1px solid #444;
+                color: white;
+            }
+            .section button {
+                background-color: #444;
+            }
+            .section button:hover {
+                background-color: #666;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            header h1 {
+                font-size: 1.2rem; /* Even smaller font for small screens */
+            }
+            .section {
+                padding: 10px; /* Adjust padding for small screens */
+            }
+        }
+    </style>
+    <script>
+        let currentImage = 0;
+        const images = ['image1.jpg', 'image2.jpg', 'image3.jpg']; // Replace with your images
+
+        function changeImage() {
+            const imgElement = document.getElementById('carousel-image');
+            imgElement.src = images[currentImage];
+            currentImage = (currentImage + 1) % images.length;
+        }
+
+        window.onload = function() {
+            setInterval(changeImage, 3000); // Change image every 3 seconds
+        };
+    </script>
+</head>
+<body>
+
+    <!-- Header with App Icon -->
+    <header>
+        <img src="appicon.png" alt="App Icon"> <!-- Icon at top left corner -->
+        <h1>Private AI Assistant</h1>
+    </header>
+    
+    <!-- Image Carousel -->
+    <div class="carousel">
+        <img id="carousel-image" src="image1.jpg" alt="Product Image" /> <!-- Replace with your image paths -->
+    </div>
+
+    <!-- Description Section -->
+    <div class="section">
+        <h2>App Features</h2>
+        <p><strong>Private AI Assistant</strong> offers a wide range of features designed to give you full control over AI model execution while maintaining your privacy. Here are some key features:</p>
+        <ul class="features-list">
+            <li><strong>Offline AI Execution</strong>: Run AI models directly on your device without needing an internet connection, ensuring complete privacy.</li>
+            <li><strong>Custom Model Support</strong>: Import your own custom gguf models or download open-source models from Hugging Face to suit your specific needs.</li>
+            <li><strong>Wide Model Compatibility</strong>: Supports a broad array of models such as LLaMA, Mistral, Falcon, BERT, Baichuan, Starcoder, and many more.</li>
+            <li><strong>Ollama Server Integration</strong>: Connect to Ollama-compatible servers via LAN or trusted networks for centralized deployment of custom models.</li>
+            <li><strong>Privacy-First Design</strong>: No cloud dependencies, giving you the freedom to work with sensitive data securely and privately.</li>
+        </ul>
+    </div>
+
+    <!-- Custom Service Section -->
+    <div class="section">
+        <h2>Custom Service: Complaints & Suggestions</h2>
+        <form action="https://docs.google.com/forms/d/e/your-google-form-id/formResponse" method="POST" target="_blank">
+            <label for="complaint">Your Complaint or Suggestion:</label>
+            <textarea id="complaint" name="entry.your-google-form-field" rows="5" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Request Free License Section -->
+    <div class="section">
+        <h2>Request a Free License</h2>
+        <p>If you are a student, teacher, or open-source developer, fill in your details below to get a free license.</p>
+        <form id="licenseForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required />
+            
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required />
+            
+            <label for="description">Description (Student/Teacher/Developer):</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+            
+            <button type="submit">Request Free License</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("licenseForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const description = document.getElementById("description").value;
+            
+            // Save to local CSV (mock, adjust based on real server)
+            const csvContent = `"Name","Email","Description"\n"${name}","${email}","${description}"\n`;
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "license_requests.csv");
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            alert('Your request has been submitted. We will contact you by email.');
+        });
+    </script>
+
+</body>
+</html>
